@@ -1,6 +1,8 @@
-#include "tree.h"
 #include <algorithm>
+#include <cstddef>
 #include <vector>
+
+#include "tree.h"
 
 PMTree::PMTree(const std::vector<char>& symbols) {
   std::vector<char> sorted = symbols;
@@ -68,9 +70,4 @@ std::vector<char> getPerm2(const PMTree& tree, int num) {
         cur = child;
         break;
       } else {
-        num -= child->permCount;
-      }
-    }
-  }
-  return path;
-}
+        num -= child->
