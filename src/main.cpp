@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <random>
+#include <vector>
 
 void example() {
   std::vector<char> in = {'1', '2', '3'};
