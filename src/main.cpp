@@ -43,8 +43,7 @@ void experiment() {
 
   for (int n = 1; n <= MAX_N; ++n) {
     std::vector<char> symbols;
-    for (int i = 0; i < n; ++i)
-      symbols.push_back('a' + i);
+    for (int i = 0; i < n; ++i) symbols.push_back('a' + i);
 
     PMTree tree(symbols);
     size_t total = tree.totalPerms();
@@ -54,14 +53,14 @@ void experiment() {
     auto start = std::chrono::high_resolution_clock::now();
     auto allPerms = getAllPerms(tree);
     auto end = std::chrono::high_resolution_clock::now();
-    double timeAll = std::chrono::duration<double, std::milli>(
-        end - start).count();
+    double timeAll =
+        std::chrono::duration<double, std::milli>(end - start).count();
 
     start = std::chrono::high_resolution_clock::now();
     auto perm2 = getPerm2(tree, randNum);
     end = std::chrono::high_resolution_clock::now();
-    double timePerm2 = std::chrono::duration<double, std::milli>(
-        end - start).count();
+    double timePerm2 =
+        std::chrono::duration<double, std::milli>(end - start).count();
 
     data << n << " " << timeAll << " " << timePerm2 << "\n";
     std::cout << "n=" << n << " готово\n";
@@ -84,9 +83,8 @@ void experiment() {
         "title 'getPerm2'\n";
   gp.close();
 
-  if (system("gnuplot result/plot.gp") == -1) {
-    std::cerr << "Gnuplot не выполнен\n";
-  }
+  // Попытка запустить gnuplot, игнорируя возвращаемое значение
+  [[maybe_unused]] int ret = std::system("gnuplot result/plot.gp");
 }
 
 int main() {
