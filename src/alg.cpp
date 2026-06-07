@@ -1,38 +1,4 @@
-#include <algorithm>
-#include <cstddef>
-#include <vector>
-
-#include "tree.h"
-
-PMTree::PMTree(const std::vector<char>& symbols) {
-  std::vector<char> sorted = symbols;
-  std::sort(sorted.begin(), sorted.end());
-  root = new Node();
-  build(root, sorted);
-}
-
-PMTree::~PMTree() { delete root; }
-
-void PMTree::build(Node* node, std::vector<char> remaining) {
-  if (remaining.empty()) {
-    node->permCount = 1;
-    return;
-  }
-  for (char ch : remaining) {
-    Node* child = new Node(ch);
-    node->children.push_back(child);
-    std::vector<char> next;
-    for (char c : remaining)
-      if (c != ch) next.push_back(c);
-    build(child, next);
-  }
-  node->permCount = 0;
-  for (Node* child : node->children)
-    node->permCount += child->permCount;
-}
-
-static void dfs(const PMTree::Node* node, std::vector<char>& path,
-                std::vector<std::vector<char>>& result, bool isRoot) {
+      std::vector<std::vector<char>>& result, bool isRoot) {
   if (!isRoot) path.push_back(node->symbol);
   if (node->children.empty()) {
     result.push_back(path);
@@ -70,4 +36,9 @@ std::vector<char> getPerm2(const PMTree& tree, int num) {
         cur = child;
         break;
       } else {
-        num -= child->
+        num -= child->permCount;
+      }
+    }
+  }
+  return path;
+}
