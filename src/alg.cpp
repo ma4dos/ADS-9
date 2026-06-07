@@ -11,9 +11,7 @@ PMTree::PMTree(const std::vector<char>& symbols) {
   build(root, sorted);
 }
 
-PMTree::~PMTree() {
-  delete root;
-}
+PMTree::~PMTree() { delete root; }
 
 void PMTree::build(Node* node, std::vector<char> remaining) {
   if (remaining.empty()) {
