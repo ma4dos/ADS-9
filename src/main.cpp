@@ -1,6 +1,5 @@
 // Copyright 2022 NNTU-CS
 #include "tree.h"
-
 #include <chrono>
 #include <fstream>
 #include <iostream>
@@ -83,7 +82,6 @@ void experiment() {
         "title 'getPerm2'\n";
   gp.close();
 
-  // Попытка запустить gnuplot, игнорируя возвращаемое значение
   [[maybe_unused]] int ret = std::system("gnuplot result/plot.gp");
 }
 
