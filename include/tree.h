@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 
+#include <algorithm>
 #include <cstddef>
 #include <vector>
 
