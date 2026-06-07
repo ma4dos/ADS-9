@@ -1,7 +1,5 @@
 // Copyright 2022 NNTU-CS
 #include "tree.h"
-#include <algorithm>
-#include <vector>
 
 PMTree::PMTree(const std::vector<char>& symbols) {
   std::vector<char> sorted = symbols;
@@ -74,4 +72,4 @@ std::vector<char> getPerm2(const PMTree& tree, int num) {
     }
   }
   return path;
-}     
+}
