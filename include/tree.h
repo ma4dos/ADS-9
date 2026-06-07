@@ -2,8 +2,8 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 
-#include <vector>
 #include <cstddef>
+#include <vector>
 
 class PMTree {
  public:
@@ -13,8 +13,7 @@ class PMTree {
     size_t permCount;
     explicit Node(char sym = '\0') : symbol(sym), permCount(0) {}
     ~Node() {
-      for (Node* child : children)
-        delete child;
+      for (Node* child : children) delete child;
     }
   };
 
