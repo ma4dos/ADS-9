@@ -15,12 +15,6 @@ static void printPerm(const std::vector<char>& p) {
     std::cout << '\n';
 }
  
-// Возвращает n! (для подсчёта числа перестановок)
-static size_t factorial(int n) {
-    size_t f = 1;
-    for (int i = 2; i <= n; ++i) f *= i;
-    return f;
-}
  
 // ─── демонстрационные примеры ───────────────────────────
  
@@ -161,7 +155,8 @@ print('Plot saved to result/plot.png')
     std::ofstream f("result/plot.py");
     f << py;
     f.close();
-    std::system("python3 result/plot.py");
+    int ret = std::system("python3 result/plot.py");
+    (void)ret;
 }
  
 // ───────────────────────────────────────────────────────
