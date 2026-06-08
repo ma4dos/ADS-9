@@ -4,6 +4,7 @@
 #include <locale>
 #include <cstdlib>
 #include <algorithm>
+#include <vector>
 #include "tree.h"
 
 void PMTree::build(Node* node, std::vector<char> remaining) {
