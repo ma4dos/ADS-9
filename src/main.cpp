@@ -5,6 +5,7 @@
 #include <random>
 #include <fstream>
 #include <numeric>
+#include <algorithm>
 #include "tree.h"
 
 static void printPerm(const std::vector<char>& p) {
@@ -31,7 +32,7 @@ static void demo() {
     std::cout << "\ngetPerm2(tree, 1) = "; printPerm(getPerm2(tree, 1));
     std::cout << "getPerm2(tree, 2) = "; printPerm(getPerm2(tree, 2));
     std::cout << "getPerm2(tree, 6) = "; printPerm(getPerm2(tree, 6));
- 
+
     std::cout << "\n=== Demo: {1,3,5,7} ===\n";
     std::vector<char> in2 = {'1', '3', '5', '7'};
     PMTree tree2(in2);
@@ -48,22 +49,22 @@ static double measureMicros(Func f, int calls) {
     double us = std::chrono::duration<double, std::micro>(t1 - t0).count();
     return us / calls;
 }
- 
+
 static void experiment() {
     const int N_MIN = 2, N_MAX = 8;
- 
+
     std::mt19937 rng(42);
 
     std::ofstream csv("result/timings.csv");
     csv << "n,getAllPerms_us,getPerm1_us,getPerm2_us\n";
- 
+
     std::cout << "\n=== Experiment ===\n";
     std::cout << "n\tgetAllPerms(us)\tgetPerm1(us)\tgetPerm2(us)\n";
- 
+
     for (int n = N_MIN; n <= N_MAX; ++n) {
         std::vector<char> alpha(n);
         std::iota(alpha.begin(), alpha.end(), '1');  // '1','2',...
- 
+
         PMTree tree(alpha);
         size_t total = tree.totalPerms();  // n!
 
@@ -71,7 +72,7 @@ static void experiment() {
         int perm_num = static_cast<int>(dist(rng));
 
         int reps = std::max(1, static_cast<int>(200 / total) + 3);
- 
+
         double t_all = measureMicros([&]() {
             volatile auto r = getAllPerms(tree);
             (void)r;
@@ -130,7 +131,7 @@ plt.tight_layout()
 plt.savefig('result/plot.png', dpi=150)
 print('Plot saved to result/plot.png')
 )python";
- 
+
     std::ofstream f("result/plot.py");
     f << py;
     f.close();
